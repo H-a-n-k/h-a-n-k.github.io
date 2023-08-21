@@ -1,0 +1,333 @@
+.card {
+    height: 175px;
+    width: 125px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 2px 5px rgba(0, 0, 0, 0.33);
+    padding: 5px;
+    transform: translateY(0);
+}
+
+.card.small {
+    height: 105px;
+    width: 75px;
+}
+
+.card.medium {
+    height: 140px;
+    width: 100px;
+}
+
+.card.selected {
+    transform: translateY(-50%);
+}
+
+.btn {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.avatar {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.point {
+    color: gold;
+    width: 100%;
+    text-align: center;
+}
+
+.point::before {
+    content: '$ ';
+    font-weight: bold;
+    color: yellow;
+}
+
+.point::after {
+    content: 'M';
+}
+
+#main {
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    #other-players {
+
+        .player:nth-child(1) {
+            top: 50%;
+            right: 50px;
+            transform: translateY(-50%);
+
+            .status,
+            .rank {
+                order: -1;
+            }
+        }
+
+        .player:nth-child(2) {
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .player:nth-child(3) {
+            top: 50%;
+            left: 50px;
+            transform: translateY(-50%);
+        }
+
+        .player {
+            position: absolute;
+            display: flex;
+            background-color: rgba(0, 0, 0, 0.33);
+            border-radius: 20px;
+            padding: 10px 0;
+
+            .status {
+                position: relative;
+                margin: 0 10px;
+
+
+                .cross {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.33);
+                }
+
+                .count {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .value {
+                        height: 40px;
+                        width: 40px;
+                        border-radius: 50%;
+                        background-color: var(--mRed);
+                        color: white;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+            }
+
+            .rank {
+                padding: 5px;
+                height: 100px;
+                width: 100px;
+            }
+        }
+    }
+
+    .player-info {
+        position: relative;
+        margin: 0 10px;
+
+        .name {
+            position: absolute;
+            top: -20px;
+            transform: translateY(-100%);
+            color: white;
+            font-weight: bold;
+            width: 100%;
+            text-align: center;
+        }
+
+        .point {
+            position: absolute;
+            bottom: -20px;
+            transform: translateY(100%);
+        }
+    }
+
+    #player {
+        position: absolute;
+        bottom: 20px;
+        left: 100px;
+        display: flex;
+        align-items: center;
+        width: calc(100% - 100px);
+        min-width: 0;
+
+        #hand {
+            margin-left: 50px;
+            display: flex;
+            flex: 1;
+
+            .card-container {
+                width: 75px;
+            }
+
+            .card:hover {
+                outline: 5px solid var(--mRed);
+            }
+
+            .card.dragging {
+                outline: 5px solid red;
+                opacity: 0.8;
+            }
+        }
+
+        .btns {
+            margin: 0 90px;
+            display: flex;
+            flex-direction: column;
+
+            .play {
+                background: grey;
+                margin-bottom: 20px;
+            }
+
+            .play.active {
+                background-color: blue;
+            }
+
+            .skip {
+                background: grey;
+            }
+
+            .skip.active {
+                background: var(--mRed);
+            }
+        }
+    }
+
+    #table {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        .cards {
+            display: flex;
+
+            .card-container {
+                max-width: 50px;
+            }
+        }
+
+        .message {
+            width: 100%;
+            text-align: center;
+            font-size: 2em;
+            margin-top: 10px;
+            color: var(--mRed);
+        }
+    }
+
+
+    #popup {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.8);
+
+        .content {
+            position: absolute;
+            width: 30%;
+            min-height: 60%;
+            max-height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 30px;
+            background: whitesmoke;
+            display: flex;
+            flex-direction: column;
+            border-radius: 50px;
+
+            .result {
+                flex: 1;
+
+                .player:nth-child(1) {
+                    .rank {
+                        color: gold;
+                        text-decoration: underline;
+                    }
+                }
+
+                .player:nth-child(2) {
+                    .rank {
+                        color: silver;
+                    }
+                }
+
+                .player:nth-child(3) {
+                    .rank {
+                        color: brown;
+                    }
+                }
+
+                .player {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 20px;
+                    padding: 0 20px;
+                    justify-content: space-between;
+
+                    .rank {
+                        font-size: 3em;
+                        font-weight: bold;
+                    }
+
+                    .info {
+                        display: flex;
+                        flex-direction: column;
+
+                        .name {
+                            font-style: italic;
+                            font-weight: bold;
+                            margin-bottom: 5px;
+                        }
+
+                        .point-info {
+                            display: flex;
+
+                            .change {
+                                margin-left: 10px;
+                                color: green;
+                            }
+
+                            .change.down {
+                                color: var(--mRed);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .btns {
+                display: flex;
+                font-size: 0.8em;
+                justify-content: space-between;
+
+                .continue {
+                    background: green;
+                }
+
+                .restart {
+                    background: blue;
+                }
+            }
+        }
+    }
+}

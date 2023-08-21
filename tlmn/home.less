@@ -1,0 +1,27 @@
+#register {
+    font-size: 1.5em;
+    background: rgba(0,0,0,0.2);
+    box-sizing: content-box;
+    padding: 50px;
+    border-radius: 50px;
+
+    h2{
+        text-align: center;
+    }
+
+    .no-player{
+        input[type='radio']{
+            display: none;
+
+            &:checked + label{
+                border-color: white;
+                color: white;
+            }
+        }
+
+        label{
+            border: 1px solid black;
+            padding: 5px 20px;
+        }
+    }
+}
